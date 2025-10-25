@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ddFast User Manual</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ddFast User Manual</h1>
+        <h2>dd but faster & strictly for ISO flashing!</h2>
+
+        <section>
+            <h2>Installation</h2>
+            <p>To begin installing ddFast, curl the repo and make it executable:</p>
+            <pre><code>sudo curl -fsSL https://raw.githubusercontent.com/lucysgutz/ddFast/main/ddfast \
+-o /usr/local/bin/ddfast
+sudo chmod +x /usr/local/bin/ddfast</code></pre>
+        </section>
+
+        <section>
+            <h2>Usage</h2>
+            <p>Using ddFast is easier than ever and simpler than dd itself.</p>
+            <p>To flash an ISO to a target, run:</p>
+            <pre><code>sudo /path/to/image/ sdX</code></pre>
+            <p><strong>sdX</strong> is a placeholder for the real target name. Discover it by running:</p>
+            <pre><code>lsblk</code></pre>
+            <p>This shows all current disks. Remember the USB you want to flash, usually <strong>sda</strong> or <strong>sdb</strong>.</p>
+        </section>
+
+        <section>
+            <h2>Live Changelog</h2>
+            <p>Here is the live changelog which uses our GitHub API to show any new updates. You can also view the full repo <a href="https://github.com/lucysgutz/ddFast" target="_blank">here</a>.</p>
+            <div class="changelog-card"></div>
+        </section>
+    </div>
+
+    <script>
+const changelogCard = document.querySelector('.changelog-card');
+
+async function fetchChangelog() {
+    try {
+        const response = await fetch('https://api.github.com/repos/lucysgutz/ddFast/commits');
+        if (!response.ok) throw new Error('Network response was not ok');
+        const commits = await response.json();
+
+        const latestCommits = commits.slice(0, 5);
+
+        const list = document.createElement('ul');
+        latestCommits.forEach(commit => {
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${commit.commit.author.name}</strong>: ${commit.commit.message}<br><small>${new Date(commit.commit.author.date).toLocaleString()}</small>`;
+            list.appendChild(li);
+        });
+
+        changelogCard.innerHTML = '';
+        changelogCard.appendChild(list);
+
+    } catch (error) {
+        changelogCard.innerHTML = `<p>Failed to load changelog. Try again later.</p>`;
+        console.error('Error fetching changelog:', error);
+    }
+}
+
+fetchChangelog();
+</script>
+
+</body>
+</html>
