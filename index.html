@@ -10,11 +10,15 @@
     <div class="container">
         <h1>ddFast User Manual</h1>
         <h2>dd but faster & strictly for ISO flashing!</h2>
+        <div class="warning-banner">
+        <strong></strong> As of 10/25/25 ddFast is made only by one developer, to help keep this site adfree & keep the project running you can donate to the cashapp <a href="https://cash.app/$lucydev15" target="_blank">here</a>.</p>
+</div>
+
 
         <section>
             <h2>Installation</h2>
             <p>To begin installing ddFast, curl the repo and make it executable:</p>
-            <pre><code>sudo curl -fsSL https://raw.githubusercontent.com/lucysgutz/ddFast/main/ddfast \
+            <pre><code>sudo curl -fsSL https://raw.githubusercontent.com/lucysgutz/ddFast/main/ddfast
 -o /usr/local/bin/ddfast
 sudo chmod +x /usr/local/bin/ddfast</code></pre>
         </section>
@@ -28,10 +32,20 @@ sudo chmod +x /usr/local/bin/ddfast</code></pre>
             <pre><code>lsblk</code></pre>
             <p>This shows all current disks. Remember the USB you want to flash, usually <strong>sda</strong> or <strong>sdb</strong>.</p>
         </section>
+        <section>
+            <h2>Updating ddFast</h2>
+            <p>If you find you are using an outdated ddFast you can always update it!</p>
+            <pre><code>sudo rm -rf /usr/local/lib/ddFast
+sudo rm -f /usr/local/bin/ddfast</code></pre>
+<p>Simply, just reinstall the newest version.</p>
+<pre><code>udo curl -fsSL https://raw.githubusercontent.com/lucysgutz/ddFast/main/ddfast \
+-o /usr/local/bin/ddfast
+sudo chmod +x /usr/local/bin/ddfast</code></pre>
+        </section>
 
         <section>
             <h2>Live Changelog</h2>
-            <p>Here is the live changelog which uses our GitHub API to show any new updates. You can also view the full repo <a href="https://github.com/lucysgutz/ddFast" target="_blank">here</a>.</p>
+            <p>Here is the live changelog which uses the GitHub API to show any new updates. You can also view the full repo <a href="https://github.com/lucysgutz/ddFast" target="_blank">here</a>.</p>
             <div class="changelog-card"></div>
         </section>
     </div>
